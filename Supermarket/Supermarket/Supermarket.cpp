@@ -7,6 +7,8 @@
 #include "proveedor.h"
 #include "Marca.h"
 #include "Producto.h"
+#include "Venta_detalle.h"
+#include "Venta_Master.h"
 
 using namespace  std;
 
@@ -17,6 +19,8 @@ void menuPuesto();
 void menuProveedores();
 void menuMarcas();
 void menuProducto();
+void menuVentad();
+void menuVentaM();
 
 void ingresarEmpleado() {
 	string  nom, ape, dir, dpi, gen, fn, idp, fil, fi, n, em;
@@ -166,6 +170,53 @@ void actualizarProducto() {
 	nuevoProducto.actualizar();
 }
 
+void ingresarVentad() {
+	string idven, idprod, cant, precu;
+	cout << "Ingrese ID Venta:"; cin >> idven;
+	cout << "Ingrese ID Producto:"; cin >> idprod;
+	cout << "Ingrese Cantidad:"; cin >> cant;
+	cout << "Ingrese Precio Unitario:"; cin >> precu;
+
+	VentaD nuevaVentad = VentaD(idven, idprod, cant, precu);
+	nuevaVentad.crear();
+}
+void mostrarVentad() {
+	VentaD nuevaVentad = VentaD();
+	nuevaVentad.mostrar();
+}
+void eliminarVentad() {
+	VentaD nuevaVentad = VentaD();
+	nuevaVentad.eliminar();
+}
+void actualizarVentad() {
+	VentaD nuevaVentad = VentaD();
+	nuevaVentad.actualizar();
+}
+
+void ingresarVentaM() {
+	string nofac, ser, ffac, idcx, idem, fi;
+	cout << "Ingrese Numero de Factura:"; cin >> nofac;
+	cout << "Ingrese Serie:"; cin >> ser;
+	cout << "Ingrese Fecha de la Factura:"; cin >> ffac;
+	cout << "Ingrese ID del Cliente:"; cin >> idcx;
+	cout << "INgrese ID del Empleado: "; cin >> idem;
+	cout << "Ingrese Fecha de Ingreso: "; cin >> fi;
+
+	VentaM nuevaVentaM = VentaM(nofac, ser, ffac, idcx, idem, fi);
+	nuevaVentaM.crear();
+}
+void mostrarVentaM() {
+	VentaM nuevaVentaM = VentaM();
+	nuevaVentaM.mostrar();
+}
+void eliminarVentaM() {
+	VentaM nuevaVentaM = VentaM();
+	nuevaVentaM.eliminar();
+}
+void actualizarVentaM() {
+	VentaM nuevaVentaM = VentaM();
+	nuevaVentaM.actualizar();
+}
 
 int main(){
 	
@@ -184,29 +235,35 @@ int main(){
 		case 4: menuProveedores(); break;
 		case 5: menuMarcas(); break;
 		case 6: menuProducto(); break;
-		case 7: exit(1);
+		case 7: menuVentad(); break;
+		case 8: menuVentaM(); break;
+		case 9: exit(1);
 		default: cout << "opcion no valida... "; break;
 		}
 		system("pause");
 		system("cls");
-	} while (opc != 7);
+	} while (opc != 9);
 	return 0;
 }
 
 void menu() {
 
 	int opc;
+	system("cls");
+	cout << "\n\t************************************";
+	cout << "\n\t\t----Bienvenidos---- " << endl;
 		cout << "\n\t1. Tabla Empleado. " << endl;
 		cout << "\t2. Tabla Cliente. " << endl;
 		cout << "\t3. Tabla Puesto. " << endl;
 		cout << "\t4. Tabla Proveedores. " << endl;
 		cout << "\t5. Tabla Marcas. " << endl;
 		cout << "\t6. Tabla Productos. " << endl;
-		cout << "\t7. Tabla sin funcion. " << endl;
-		cout << "\t8. Tabla sin funcion. " << endl;
+		cout << "\t7. Tabla Ventas Detalle. " << endl;
+		cout << "\t8. Tabla Venta Maestro. " << endl;
 		cout << "\t9. Tabla sin funcion. " << endl;
 		cout << "\t10. Tabla sin funcion. " << endl;
-		cout << "\t11. Salir" << endl;
+		cout << "\t11. Salida del Sistema" << endl;
+		cout << "\n\t************************************";
 
 		cout << "\nDigite opcion: ";
 		
@@ -339,7 +396,7 @@ void menuMarcas() {
 		}
 		system("pause");
 		system("cls");
-	} while (opc != 6);
+	} while (opc != 5);
 }
 
 void menuProducto() {
@@ -365,5 +422,57 @@ void menuProducto() {
 		}
 		system("pause");
 		system("cls");
-	} while (opc != 6);
+	} while (opc != 5);
+}
+
+void menuVentad() {
+
+	int opc;
+
+	do {
+		cout << "\n\t1. Ingresar datos. " << endl;
+		cout << "\t2. Ver datos. " << endl;
+		cout << "\t3. Eliminar datos. " << endl;
+		cout << "\t4. Actualizar datos. " << endl;
+		cout << "\t5. Regresar al menu principal " << endl;
+
+		cout << "\nDigite opcion: "; cin >> opc;
+
+		switch (opc) {
+		case 1: ingresarVentad(); break;
+		case 2: mostrarVentad(); break;
+		case 3: eliminarVentad(); break;
+		case 4: actualizarVentad(); break;
+		case 5:	main(); break;
+		default: cout << "opcion no valida... "; break;
+		}
+		system("pause");
+		system("cls");
+	} while (opc != 5);
+}
+
+void menuVentaM() {
+
+	int opc;
+
+	do {
+		cout << "\n\t1. Ingresar datos. " << endl;
+		cout << "\t2. Ver datos. " << endl;
+		cout << "\t3. Eliminar datos. " << endl;
+		cout << "\t4. Actualizar datos. " << endl;
+		cout << "\t5. Regresar al menu principal " << endl;
+
+		cout << "\nDigite opcion: "; cin >> opc;
+
+		switch (opc) {
+		case 1: ingresarVentaM(); break;
+		case 2: mostrarVentaM(); break;
+		case 3: eliminarVentaM(); break;
+		case 4: actualizarVentaM(); break;
+		case 5:	main(); break;
+		default: cout << "opcion no valida... "; break;
+		}
+		system("pause");
+		system("cls");
+	} while (opc != 5);
 }

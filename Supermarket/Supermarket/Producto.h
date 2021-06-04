@@ -129,7 +129,7 @@ class Productos{
 		cin >> ex;
 		cout << "Ingrese nueva Fecha de ingreso: ";
 		cin >> fi;
-		string editar = "update productos set Marca= '" + n + "', Producto= '" + n + "', idMarca = '" + m + "', Descripcion= '" + d + "', Imagen= '" + im + "', Precio_costo= '" + pc + "', Precio_venta= '" + pv + "', Existencia = '" + ex + "', Fecha_ingreso = '" + fi + "'";
+		string editar = "update productos set Producto= '" + n + "', idMarca = '" + m + "', Descripcion= '" + d + "', Imagen= '" + im + "', Precio_costo= '" + pc + "', Precio_venta= '" + pv + "', Existencia = '" + ex + "', Fecha_ingreso = '" + fi + "'";
 		const char* c = editar.c_str();
 		q_estado = mysql_query(cn.getconectar(), c);
 
