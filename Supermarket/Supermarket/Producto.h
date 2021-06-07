@@ -29,7 +29,7 @@ class Productos{
 		ConexionBD cn = ConexionBD();
 		cn.abrir_conexion();
 		if (cn.getconectar()) {
-			string  insertar = "INSERT INTO productos(Producto,idMarca,Descripcion,Imagen,Precio_costo,Precio_venta,Existencia,Fecha_ingreso) VALUES ('" + Producto + "','" + idMarca + "','" + Descripcion + "','" + Imagen + "','" + Precio_costo + "','" + Precio_venta + "','" + Existencia + "','" + Fecha_ingreso + "')";
+			string  insertar = "INSERT INTO productos(Producto,idMarca,Descripcion,Imagen,Precio_costo,Precio_venta,Existencia,Fecha_ingreso) VALUES ('" + Producto + "','" + idMarca + "','" + Descripcion + "','" + Imagen + "','" + Precio_costo + "','" + Precio_venta + "','" + Existencia + "',current_timestamp())";
 			const char* i = insertar.c_str();
 			// executar el query
 			q_estado = mysql_query(cn.getconectar(), i);
@@ -129,7 +129,7 @@ class Productos{
 		cin >> ex;
 		cout << "Ingrese nueva Fecha de ingreso: ";
 		cin >> fi;
-		string editar = "update productos set Producto= '" + n + "', idMarca = '" + m + "', Descripcion= '" + d + "', Imagen= '" + im + "', Precio_costo= '" + pc + "', Precio_venta= '" + pv + "', Existencia = '" + ex + "', Fecha_ingreso = '" + fi + "'";
+		string editar = "update productos set Producto= '" + n + "', idMarca = '" + m + "', Descripcion= '" + d + "', Imagen= '" + im + "', Precio_costo= '" + pc + "', Precio_venta= '" + pv + "', Existencia = '" + ex + "', Fecha_ingreso= current_timestamp() where idProducto='" + id + "'";
 		const char* c = editar.c_str();
 		q_estado = mysql_query(cn.getconectar(), c);
 

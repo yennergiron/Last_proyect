@@ -102,7 +102,7 @@ class Puesto{
 		cin >> id;
 		cout << "Ingrese nuevo Puesto: ";
 		cin >> n;
-		string editar = "update puestos set Puesto= '" + n + "'";
+		string editar = "update puestos set Puesto= '" + n + "' where idPuesto='" + id + "'";
 		const char* c = editar.c_str();
 		q_estado = mysql_query(cn.getconectar(), c);
 

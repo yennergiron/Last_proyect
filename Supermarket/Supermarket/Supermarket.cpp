@@ -1,6 +1,7 @@
 // Supermarket.cpp : Este archivo contiene la función "main". La ejecución del programa comienza y termina ahí.
 //
 #include <iostream>
+#include <stdlib.h>
 #include "Empleado.h"
 #include "Cliente.h"
 #include "Puesto.h"
@@ -9,6 +10,8 @@
 #include "Producto.h"
 #include "Venta_detalle.h"
 #include "Venta_Master.h"
+#include "Compra_detalle.h"
+#include "Compra_Master.h"
 
 using namespace  std;
 
@@ -21,20 +24,22 @@ void menuMarcas();
 void menuProducto();
 void menuVentad();
 void menuVentaM();
+void menuCompraD();
+void menuCompraM();
 
 void ingresarEmpleado() {
 	string  nom, ape, dir, dpi, gen, fn, idp, fil, fi, n, em;
 	int tel;
-	cout << "Ingrese Nombres:"; cin>> nom;
-	cout << "Ingrese Apellidos:"; cin>> ape;
-	cout << "Ingrese Direccion:"; cin>> dir;
-	cout << "Ingrese Telefono:"; cin >> tel; cin.ignore();
-	cout << "Ingrese DPI:"; cin >> dpi;
-	cout << "Ingrese Genero:"; cin >> gen;
-	cout << "Ingrese Fecha_nacimiento:"; cin >> fn;
-	cout << "Ingrese idPuesto:"; cin >> idp;
-	cout << "Ingrese Fecha_inicio_labores:"; cin >> fil;
-	cout << "Ingrese Fecha_ingreso:"; cin >> fi;
+	cout << "\tIngrese Nombres:"; cin>> nom;
+	cout << "\tIngrese Apellidos:"; cin>> ape;
+	cout << "\tIngrese Direccion:"; cin>> dir;
+	cout << "\tIngrese Telefono:"; cin >> tel; cin.ignore();
+	cout << "\tIngrese DPI:"; cin >> dpi;
+	cout << "\tIngrese Genero:"; cin >> gen;
+	cout << "\tIngrese Fecha_nacimiento AAAA/MM/DD:"; cin >> fn;
+	cout << "\tIngrese idPuesto (numero) :"; cin >> idp;
+	cout << "\tIngrese Fecha_inicio_labores AAAA/MM/DD:"; cin >> fil;
+	cout << "\tIngrese Fecha_ingreso AAAA/MM/DD:"; cin >> fi;
 	
 	Empleado nuevoEmpleado = Empleado(nom, ape, dir, tel, dpi, gen, fn, idp, fil, fi);
 	nuevoEmpleado.crear();
@@ -55,13 +60,13 @@ void actualizarEmpleado() {
 void ingresarCliente() {
 	string nom, ape, n, gen, em, fi;
 	int tel;
-	cout << "Ingrese Nombres:"; cin >> nom;
-	cout << "Ingrese Apellidos:"; cin >> ape;
-	cout << "Ingrese NIT:"; cin >> n;
-	cout << "Ingrese Genero:"; cin >> gen;
-	cout << "Ingrese Telefono:"; cin >> tel; cin.ignore();
-	cout << "Ingrese Correo Electronico:"; cin >> em;
-	cout << "Ingrese Fecha Ingreso:"; cin >> fi;
+	cout << "\tIngrese Nombres:"; cin >> nom;
+	cout << "\tIngrese Apellidos:"; cin >> ape;
+	cout << "\tIngrese NIT:"; cin >> n; cin.ignore();
+	cout << "\tIngrese Genero:"; cin >> gen;
+	cout << "\tIngrese Telefono:"; cin >> tel; cin.ignore();
+	cout << "\tIngrese Correo Electronico:"; cin >> em;
+	cout << "\tIngrese Fecha Ingreso AAAA/MM/DD:"; cin >> fi;
 
 	Cliente nuevoCliente = Cliente(nom, ape, n, gen, tel, em, fi);
 	nuevoCliente.crear();
@@ -81,7 +86,7 @@ void actualizarCliente() {
 
 void ingresarPuesto(){
 	string pue;
-	cout << "Ingrese Puesto:"; cin >> pue;
+	cout << "\tIngrese Puesto:"; cin >> pue;
 
 	Puesto nuevoPuesto = Puesto(pue);
 	nuevoPuesto.crear();
@@ -102,10 +107,10 @@ void actualizarPuesto() {
 void ingresarProveedor() {
 	string prov, n, dir;
 	int tel;
-	cout << "Ingrese Proveedor:"; cin >> prov;
-	cout << "Ingrese NIT: "; cin >> n;
-	cout << "Ingrese Direccion: "; cin >> dir;
-	cout << "Ingrese Telefono:"; cin >> tel; cin.ignore();
+	cout << "\tIngrese Proveedor:"; cin >> prov;
+	cout << "\tIngrese NIT: "; cin >> n;
+	cout << "\tIngrese Direccion: "; cin >> dir;
+	cout << "\tIngrese Telefono:"; cin >> tel; cin.ignore();
 
 	Proveedores nuevoProveedor = Proveedores(prov,n,dir,tel);
 	nuevoProveedor.crear();
@@ -125,7 +130,7 @@ void actualizarProveedor() {
 
 void ingresarMarca () {
 	string mar;
-	cout << "Ingrese Marca:"; cin >> mar;
+	cout << "\tIngrese Marca:"; cin >> mar;
 
 	Marcas nuevaMarca = Marcas(mar);
 	nuevaMarca.crear();
@@ -145,14 +150,14 @@ void actualizarMarca() {
 
 void ingresarProducto() {
 	string prod, idmar, desc, ima, pc, pv, ex, fi;
-	cout << "Ingrese Producto:"; cin >> prod;
-	cout << "Ingrese ID Marca:"; cin >> idmar;
-	cout << "Ingrese Descripcion:"; cin >> desc;
-	cout << "Ingrese Imagen:"; cin >> ima;
-	cout << "Ingrese Precio de Costo:"; cin >> pc;
-	cout << "Ingrese Precio de Venta:"; cin >> pv;
-	cout << "Ingrese Existencia:"; cin >> ex;
-	cout << "Ingrese Fecha de Ingreso:"; cin >> fi;
+	cout << "\tIngrese Producto:"; cin >> prod;
+	cout << "\tIngrese ID Marca (numero de ID):"; cin >> idmar;
+	cout << "\tIngrese Descripcion:"; cin >> desc;
+	cout << "\tIngrese Imagen:"; cin >> ima;
+	cout << "\tIngrese Precio de Costo:"; cin >> pc;
+	cout << "\tIngrese Precio de Venta:"; cin >> pv;
+	cout << "\tIngrese Existencia:"; cin >> ex;
+	cout << "\tIngrese Fecha de Ingreso AAAA/MM/DD:"; cin >> fi;
 
 	Productos nuevoProducto = Productos(prod, idmar, desc, ima, pc, pv, ex, fi);
 	nuevoProducto.crear();
@@ -172,10 +177,10 @@ void actualizarProducto() {
 
 void ingresarVentad() {
 	string idven, idprod, cant, precu;
-	cout << "Ingrese ID Venta:"; cin >> idven;
-	cout << "Ingrese ID Producto:"; cin >> idprod;
-	cout << "Ingrese Cantidad:"; cin >> cant;
-	cout << "Ingrese Precio Unitario:"; cin >> precu;
+	cout << "\tIngrese ID Venta:"; cin >> idven;
+	cout << "\tIngrese ID Producto:"; cin >> idprod;
+	cout << "\tIngrese Cantidad:"; cin >> cant;
+	cout << "\tIngrese Precio Unitario:"; cin >> precu;
 
 	VentaD nuevaVentad = VentaD(idven, idprod, cant, precu);
 	nuevaVentad.crear();
@@ -195,12 +200,12 @@ void actualizarVentad() {
 
 void ingresarVentaM() {
 	string nofac, ser, ffac, idcx, idem, fi;
-	cout << "Ingrese Numero de Factura:"; cin >> nofac;
-	cout << "Ingrese Serie:"; cin >> ser;
-	cout << "Ingrese Fecha de la Factura:"; cin >> ffac;
-	cout << "Ingrese ID del Cliente:"; cin >> idcx;
-	cout << "INgrese ID del Empleado: "; cin >> idem;
-	cout << "Ingrese Fecha de Ingreso: "; cin >> fi;
+	cout << "\tIngrese Numero de Factura:"; cin >> nofac;
+	cout << "\tIngrese Serie:"; cin >> ser;
+	cout << "\tIngrese Fecha de la Factura AAAA/MM/DD:"; cin >> ffac;
+	cout << "\tIngrese ID del Cliente:"; cin >> idcx;
+	cout << "\tINgrese ID del Empleado: "; cin >> idem;
+	cout << "\tIngrese Fecha de Ingreso AAAA/MM/DD: "; cin >> fi;
 
 	VentaM nuevaVentaM = VentaM(nofac, ser, ffac, idcx, idem, fi);
 	nuevaVentaM.crear();
@@ -218,8 +223,56 @@ void actualizarVentaM() {
 	nuevaVentaM.actualizar();
 }
 
+void ingresarCompraD() {
+	string idco, idprod, cant, precoun;
+	cout << "\tIngrese ID de la Compra:"; cin >> idco;
+	cout << "\tIngrese ID del producto:"; cin >> idprod;
+	cout << "\tIngrese Cantidad:"; cin >> cant;
+	cout << "\tIngrese el Precio Costo Unitario:"; cin >> precoun;
+
+	CompraD nuevaCompraD = CompraD(idco, idprod, cant, precoun);
+	nuevaCompraD.crear();
+}
+void mostrarCompraD() {
+	CompraD nuevaCompraD = CompraD();
+	nuevaCompraD.mostrar();
+}
+void eliminarCompraD() {
+	CompraD nuevaCompraD = CompraD();
+	nuevaCompraD.eliminar();
+}
+void actualizarCompraD() {
+	CompraD nuevaCompraD = CompraD();
+	nuevaCompraD.actualizar();
+}
+
+void ingresarCompraM() {
+	string nocom, idprov, feo, fei;
+	cout << "\tIngrese No de Orden de la Compra:"; cin >> nocom;
+	cout << "\tIngrese ID del Proveedor:"; cin >> idprov;
+	cout << "\tIngrese Fecha de la Orden AAAA/MM/DD:"; cin >> feo;
+	cout << "\tIngrese Fecha de Ingreso AAAA/MM/DD:"; cin >> fei;
+
+	CompraM nuevaCompraM = CompraM(nocom, idprov, feo, fei);
+	nuevaCompraM.crear();
+}
+void mostrarCompraM() {
+	CompraM nuevaCompraM = CompraM();
+	nuevaCompraM.mostrar();
+}
+void eliminarCompraM() {
+	CompraM nuevaCompraM = CompraM();
+	nuevaCompraM.eliminar();
+}
+void actualizarCompraM() {
+	CompraM nuevaCompraM = CompraM();
+	nuevaCompraM.actualizar();
+}
+
 int main(){
 	
+	system("color FD");
+
 	/*menu();*/
 
 	int opc;
@@ -237,12 +290,14 @@ int main(){
 		case 6: menuProducto(); break;
 		case 7: menuVentad(); break;
 		case 8: menuVentaM(); break;
-		case 9: exit(1);
+		case 9: menuCompraD(); break;
+		case 10: menuCompraM(); break;
+		case 11: exit(1);
 		default: cout << "opcion no valida... "; break;
 		}
 		system("pause");
 		system("cls");
-	} while (opc != 9);
+	} while (opc != 11);
 	return 0;
 }
 
@@ -260,8 +315,8 @@ void menu() {
 		cout << "\t6. Tabla Productos. " << endl;
 		cout << "\t7. Tabla Ventas Detalle. " << endl;
 		cout << "\t8. Tabla Venta Maestro. " << endl;
-		cout << "\t9. Tabla sin funcion. " << endl;
-		cout << "\t10. Tabla sin funcion. " << endl;
+		cout << "\t9. Tabla Compras Detalle. " << endl;
+		cout << "\t10. Tabla Compra Maestro. " << endl;
 		cout << "\t11. Salida del Sistema" << endl;
 		cout << "\n\t************************************";
 
@@ -469,6 +524,58 @@ void menuVentaM() {
 		case 2: mostrarVentaM(); break;
 		case 3: eliminarVentaM(); break;
 		case 4: actualizarVentaM(); break;
+		case 5:	main(); break;
+		default: cout << "opcion no valida... "; break;
+		}
+		system("pause");
+		system("cls");
+	} while (opc != 5);
+}
+
+void menuCompraD() {
+
+	int opc;
+
+	do {
+		cout << "\n\t1. Ingresar datos. " << endl;
+		cout << "\t2. Ver datos. " << endl;
+		cout << "\t3. Eliminar datos. " << endl;
+		cout << "\t4. Actualizar datos. " << endl;
+		cout << "\t5. Regresar al menu principal " << endl;
+
+		cout << "\nDigite opcion: "; cin >> opc;
+
+		switch (opc) {
+		case 1: ingresarCompraD(); break;
+		case 2: mostrarCompraD(); break;
+		case 3: eliminarCompraD(); break;
+		case 4: actualizarCompraD(); break;
+		case 5:	main(); break;
+		default: cout << "opcion no valida... "; break;
+		}
+		system("pause");
+		system("cls");
+	} while (opc != 5);
+}
+
+void menuCompraM() {
+
+	int opc;
+
+	do {
+		cout << "\n\t1. Ingresar datos. " << endl;
+		cout << "\t2. Ver datos. " << endl;
+		cout << "\t3. Eliminar datos. " << endl;
+		cout << "\t4. Actualizar datos. " << endl;
+		cout << "\t5. Regresar al menu principal " << endl;
+
+		cout << "\nDigite opcion: "; cin >> opc;
+
+		switch (opc) {
+		case 1: ingresarCompraM(); break;
+		case 2: mostrarCompraM(); break;
+		case 3: eliminarCompraM(); break;
+		case 4: actualizarCompraM(); break;
 		case 5:	main(); break;
 		default: cout << "opcion no valida... "; break;
 		}

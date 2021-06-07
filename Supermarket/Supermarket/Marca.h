@@ -101,7 +101,7 @@ class Marcas{
 		cin >> id;
 		cout << "Ingrese nueva Marca: ";
 		cin >> n;
-		string editar = "update marcas set Marca= '" + n + "'";
+		string editar = "update marcas set Marca= '" + n + "' where idMarca='" + id + "'";
 		const char* c = editar.c_str();
 		q_estado = mysql_query(cn.getconectar(), c);
 

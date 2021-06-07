@@ -27,7 +27,7 @@ class Empleado : Persona{
 		cn.abrir_conexion();
 		string t = to_string(Telefono);
 		if (cn.getconectar()) {
-			string  insertar = "INSERT INTO empleados(Nombres,Apellidos,Direccion,Telefono,DPI, Genero,Fecha_nacimiento, idPuesto,Fecha_inicio_labores,Fecha_ingreso) VALUES ('" + Nombres + "','" + Apellidos + "','" + Direccion + "'," + t + ",'" + DPI + "','" + Genero + "','" + Fecha_nacimiento + "', '" + idPuesto + "', '" + Fecha_inicio_labores + "', '" + Fecha_ingreso + "')";
+			string  insertar = "INSERT INTO empleados(Nombres,Apellidos,Direccion,Telefono,DPI, Genero,Fecha_nacimiento, idPuesto,Fecha_inicio_labores,Fecha_ingreso) VALUES ('" + Nombres + "','" + Apellidos + "','" + Direccion + "'," + t + ",'" + DPI + "','" + Genero + "','" + Fecha_nacimiento + "', '" + idPuesto + "', '" + Fecha_inicio_labores + "',current_timestamp())";
 			const char* i = insertar.c_str();
 			// executar el query
 			q_estado = mysql_query(cn.getconectar(), i);
@@ -59,7 +59,7 @@ class Empleado : Persona{
 			if (!q_estado) {
 				resultado = mysql_store_result(cn.getconectar());
 				while (fila = mysql_fetch_row(resultado)) {
-					cout << fila[0] << "," << fila[1] << "," << fila[2] << "," << fila[3] << "," << fila[4] << "," << fila[5] << "," << fila[6] << "," << fila[7] << "," << fila[8] << "," << fila[9] << "," << fila[10] << endl;
+					cout << "\t" << fila[0] << "," << fila[1] << "," << fila[2] << "," << fila[3] << "," << fila[4] << "," << fila[5] << "," << fila[6] << "," << fila[7] << "," << fila[8] << "," << fila[9] << "," << fila[10] << endl;
 				}
 
 			}
@@ -81,7 +81,7 @@ class Empleado : Persona{
 		string e;
 		cout << "Ingrese el idEmpleado a eliminar: ";
 		cin >> e;
-		string eliminar = "delete from supermercado.empleados where idEmpleado= '" + e + "'";
+		string eliminar = "delete from supermercado.empleados where idEmpleado='" + e + "'";
 		const char* f = eliminar.c_str();
 		q_estado = mysql_query(cn.getconectar(), f);
 
@@ -133,7 +133,7 @@ class Empleado : Persona{
 		cin >> la;
 		cout << "Ingrese nueva Fecha de ingreso: ";
 		cin >> fi;
-		string editar = "update empleados set Nombres= '" + n + "', Apellidos= '" + a + "', Direccion= '" + d + "', Telefono= '" + t + "', DPI= '" + DP + "', Genero= '" + g + "', Fecha_nacimiento= '" + fn + "', idPuesto = '" + ip + "', Fecha_inicio_labores= '" + la + "',Fecha_ingreso= '" + fi + "' ";
+		string editar = "update empleados set Nombres= '" + n + "', Apellidos= '" + a + "', Direccion= '" + d + "', Telefono= '" + t + "', DPI= '" + DP + "', Genero= '" + g + "', Fecha_nacimiento= '" + fn + "', idPuesto = '" + ip + "', Fecha_inicio_labores= '" + la + "',Fecha_ingreso= current_timestamp() where idEmpleado='" + id + "'";
 		const char* c = editar.c_str();
 		q_estado = mysql_query(cn.getconectar(), c);
 

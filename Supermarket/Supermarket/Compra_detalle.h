@@ -6,17 +6,17 @@
 
 using namespace std;
 
-class VentaD{
+class CompraD{
 
-	string idVenta, idProducto, Cantidad, Precio_unitario;
+	string idCompra, idproducto, cantidad, precio_unitario;
 
-	public: VentaD(){
+	public: CompraD(){
 	}
-	public: VentaD(string ven_ventad, string prod_ventad, string cant_ventad, string precu_ventad){
-	idVenta = ven_ventad;
-	idProducto = prod_ventad;
-	Cantidad = cant_ventad;
-	Precio_unitario = precu_ventad;
+	public: CompraD(string com_com, string prod_com, string cant_com, string precu_com){
+	idCompra = com_com;
+	idproducto = prod_com;
+	cantidad = cant_com;
+	precio_unitario = precu_com;
 	}
 	
 	// METODOS
@@ -25,7 +25,7 @@ class VentaD{
 		ConexionBD cn = ConexionBD();
 		cn.abrir_conexion();
 		if (cn.getconectar()) {
-			string  insertar = "INSERT INTO ventas_detalle(idVenta,idProducto,Cantidad,Precio_unitario) VALUES ('" + idVenta + "','" + idProducto + "','" + Cantidad + "','" + Precio_unitario + "')";
+			string  insertar = "INSERT INTO compras_detalle(idCompra,idProducto,Cantidad,Precio_costo_unitario) VALUES ('" + idCompra + "','" + idproducto + "','" + cantidad + "','" + precio_unitario + "')";
 			const char* i = insertar.c_str();
 			// executar el query
 			q_estado = mysql_query(cn.getconectar(), i);
@@ -50,10 +50,10 @@ class VentaD{
 		cn.abrir_conexion();
 		if (cn.getconectar()) {
 
-			cout << "------------ Datos de Marcas ------------" << endl;
-			string consulta = "select * from ventas_detalle";
-			const char* nuevaVentad = consulta.c_str();
-			q_estado = mysql_query(cn.getconectar(), nuevaVentad);
+			cout << "------------ Datos de Compras ------------" << endl;
+			string consulta = "select * from compras_detalle";
+			const char* nuevaCompraD = consulta.c_str();
+			q_estado = mysql_query(cn.getconectar(), nuevaCompraD);
 			if (!q_estado) {
 				resultado = mysql_store_result(cn.getconectar());
 				while (fila = mysql_fetch_row(resultado)) {
@@ -77,17 +77,17 @@ class VentaD{
 
 		cn.abrir_conexion();
 		string e;
-		cout << "Ingrese el ID Venta Detalle a eliminar: ";
+		cout << "Ingrese el ID Compra Detalle a eliminar: ";
 		cin >> e;
-		string eliminar = "delete from supermercado.ventas_detalle where idVenta_detalle= '" + e + "'";
+		string eliminar = "delete from supermercado.compras_detalle where idCompra_detalle= '" + e + "'";
 		const char* f = eliminar.c_str();
 		q_estado = mysql_query(cn.getconectar(), f);
 
 		if (!q_estado) {
-			cout << "Ingreso Exitoso..." << endl;
+			cout << "Exitoso..." << endl;
 		}
 		else {
-			cout << "**** Error al ingresar ****" << endl;
+			cout << "** Error al ingresar **" << endl;
 		}
 		cn.cerrar_conexion();
 	}
@@ -97,31 +97,31 @@ class VentaD{
 		ConexionBD cn = ConexionBD();
 
 		cn.abrir_conexion();
-		string id;
-		string n;
-		string m;
-		string d;
-		string im;
+		string id_com;
+		string id_new;
+		string pro;
+		string can;
+		string preu;
 
-		cout << "Ingrese el ID Venta Detalle Editar: ";
-		cin >> id;
-		cout << "Ingrese nuevo ID Venta: ";
-		cin >> n;
+		cout << "Ingrese el ID Compra Detalle Editar: ";
+		cin >> id_com;
+		cout << "Ingrese nuevo ID Compra: ";
+		cin >> id_new;
 		cout << "Ingrese nuevo ID Producto: ";
-		cin >> m;
+		cin >> pro;
 		cout << "Ingrese nueva Cantidad: ";
-		cin >> d;
+		cin >> can;
 		cout << "Ingrese nueva Precio Unitario: ";
-		cin >> im;
-		string editar = "update ventas_detalle set idVenta= '" + n + "', idProducto= '" + m + "', Cantidad = '" + d + "', Precio_unitario= '" + im + "' where idVenta_detalle='" + id + "'";
+		cin >> preu;
+		string editar = "update compras_detalle set idCompra= '" + id_new + "', idProducto= '" + pro + "', Cantidad = '" + can+ "', Precio_costo_unitario= '" + preu + "' where idCompra_detalle='" + id_com + "'";
 		const char* c = editar.c_str();
 		q_estado = mysql_query(cn.getconectar(), c);
 
 		if (!q_estado) {
-			cout << "Ingreso Exitoso..." << endl;
+			cout << "Actualizacion Exitosa..." << endl;
 		}
 		else {
-			cout << "**** Error al ingresar ****" << endl;
+			cout << "** Error al ingresar **" << endl;
 		}
 		cn.cerrar_conexion();
 		

@@ -115,7 +115,7 @@ class Proveedores{
 		cin >> d;
 		cout << "Ingrese nuevo Telefono: ";
 		cin >> t;
-		string editar = "update proveedores set Proveedor= '" + n + "', NIT= '" + a + "', Direccion= '" + d + "', Telefono= '" + t + "'";
+		string editar = "update proveedores set Proveedor= '" + n + "', NIT= '" + a + "', Direccion= '" + d + "', Telefono= '" + t + "' where idProveedore='" + id + "'";
 		const char* c = editar.c_str();
 		q_estado = mysql_query(cn.getconectar(), c);
 

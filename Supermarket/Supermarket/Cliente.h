@@ -28,7 +28,7 @@ class Cliente : Persona{
 		cn.abrir_conexion();
 		string t = to_string(Telefono);
 		if (cn.getconectar()) {
-			string  insertar = "INSERT INTO clientes(Nombres,Apellidos,NIT,Genero,Telefono,Correo_electronico,Fecha_ingreso) VALUES ('" + Nombres + "','" + Apellidos + "','" + NIT + "'," + Genero + ",'" + t + "','" + Correo_electronico + "','" + Fecha_ingreso + "')";
+			string  insertar = "INSERT INTO clientes(Nombres,Apellidos,NIT,Genero,Telefono,Correo_electronico,Fecha_ingreso) VALUES ('" + Nombres + "','" + Apellidos + "','" + NIT + "'," + Genero + ",'" + t + "','" + Correo_electronico + "',current_timestamp())";
 			const char* i = insertar.c_str();
 			// executar el query
 			q_estado = mysql_query(cn.getconectar(), i);
@@ -114,7 +114,7 @@ class Cliente : Persona{
 		string fin;
 
 		cout << "Ingrese el ID a Editar: ";
-		cin >> id;
+		cin >> id; 
 		cout << "Ingrese nuevo Nombres: ";
 		cin >> no;
 		cout << "Ingrese nueva Apellidos: ";
@@ -129,7 +129,7 @@ class Cliente : Persona{
 		cin >> ce;
 		cout << "Ingrese nueva Fecha de ingreso: ";
 		cin >> fin;
-		string editar = "update clientes set Nombres= '" + no + "', Apellidos= '" + ap + "', NIT= '" + nt + "', Genero= '" + ge + "', Telefono= '" + te + "', Correo_electronico= '" + ce + "',Fecha_ingreso= '" + fin + "'";
+		string editar = "update clientes set Nombres= '" + no + "', Apellidos= '" + ap + "', NIT= '" + nt + "', Genero= '" + ge + "', Telefono= '" + te + "', Correo_electronico= '" + ce + "',Fecha_ingreso= current_timestamp() where idCliente='" + id + "'";
 		const char* c = editar.c_str();
 		q_estado = mysql_query(cn.getconectar(), c);
 

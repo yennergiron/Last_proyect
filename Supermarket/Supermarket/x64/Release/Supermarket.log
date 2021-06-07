@@ -1,8 +1,9 @@
-﻿  Supermarket.cpp
-C:\Users\yenne\Documents\U\3r Semestre\program1\Visual_studio\Supermarket_DB\Supermarket\Supermarket\Supermarket.cpp(251,6): warning C4101: 'opc': variable local sin referencia
+﻿  Empleado.cpp
+  Supermarket.cpp
+C:\Users\yenne\Documents\U\3r Semestre\program1\Visual_studio\Supermarket_DB\Supermarket\Supermarket\Supermarket.cpp(306,6): warning C4101: 'opc': variable local sin referencia
   Generando código
-  2 of 253 functions ( 0.8%) were compiled, the rest were copied from previous compilation.
+  3 of 277 functions ( 1.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    1 functions had inline decision re-evaluated but remain unchanged
   Generación de código finalizada
   Supermarket.vcxproj -> C:\Users\yenne\Documents\U\3r Semestre\program1\Visual_studio\Supermarket_DB\Supermarket\x64\Release\Supermarket.exe
